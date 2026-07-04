@@ -8,9 +8,9 @@
     <script src="./script.js" defer></script>
   </head>
   <body>
-    <div class="todo">
+    <div class="todo" data-js-todo>
       <h1 class="todo__tittle">To Do List</h1>
-      <form class="todo__form">
+      <form class="todo__form data-js-todo-new-task-form">
         <div class="todo__field field">
           <label class="field__label" for="new-task">
             New task title
@@ -20,11 +20,13 @@
             id="new-task"
             placeholder=" "
             autocomplete="off"
+            data-js-todo-new-task-input
           />
         </div>
         <button class="button" type="submit">Add</button>
       </form>
-      <form class="todo__form">
+
+      <form class="todo__form data-js-todo-search-task-form">
         <div class="todo__field field">
           <label class="field__label" for="new-task">
             New task title
@@ -34,18 +36,128 @@
             id="new-task"
             placeholder=" "
             autocomplete="off"
+            data-js-todo-search-task-input
           />
         </div>
         <button class="button" type="submit">Add</button>
       </form>
+
       <div class="todo__info">
         <div class="todo__total-tasks">
-          Total Tasks: <span>0</span>
+          Total Tasks: <span data-js-todo-total-tasks>0</span>
         </div>
-        <button todo__delete-all-button type="button">
+        <button
+          todo__delete-all-button
+          type="button"
+          data-js-todo-delete-all-button
+        >
           Delete All
         </button>
       </div>
+
+      <ul class="todo__list" data-js-todo-list>
+        <li class="todo__item todo-item" data-js-todo-item>
+          <input
+            id="todo-1"
+            class="todo-item__checkbox"
+            type="checkbox"
+            data-js-todo-item-checkbox
+          />
+          <label
+            for="todo-1"
+            class="todo-item__label"
+            data-js-todo-item-label
+            >Tasks - 1
+          </label>
+          <button
+            data-js-todo-item-delete-button
+            class="todo__item__delete-button"
+            type="button"
+            aria-label="Delete"
+            title="Delete"
+          >
+            <svg
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              width="20.000000"
+              height="20.000000"
+              fill="none"
+            >
+              <rect
+                id="X"
+                width="20.000000"
+                height="20.000000"
+                x="0.000000"
+                y="0.000000"
+                fill="rgb(255,255,255)"
+                fill-opacity="0"
+              />
+              <path
+                id="Icon"
+                d="M5 5L10 10L15 15M15 5L10 10M10 10L5 15"
+                stroke="rgb(117,117,117)"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.000000"
+              />
+            </svg>
+          </button>
+        </li>
+        <li class="todo__item todo-item data-js-todo-item">
+          <input
+            id="todo-1"
+            class="todo-item__checkbox"
+            type="checkbox"
+            data-js-todo-item-checkbox
+          />
+          <label
+            for="todo-1"
+            class="todo-item__label"
+            data-js-todo-item-label
+            >Tasks - 1
+          </label>
+          <button
+            data-js-todo-item-delete-button
+            class="todo__item__delete-button"
+            type="button"
+            aria-label="Delete"
+            title="Delete"
+          >
+            <svg
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              width="20.000000"
+              height="20.000000"
+              fill="none"
+            >
+              <rect
+                id="X"
+                width="20.000000"
+                height="20.000000"
+                x="0.000000"
+                y="0.000000"
+                fill="rgb(255,255,255)"
+                fill-opacity="0"
+              />
+              <path
+                id="Icon"
+                d="M5 5L10 10L15 15M15 5L10 10M10 10L5 15"
+                stroke="rgb(117,117,117)"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.000000"
+              />
+            </svg>
+          </button>
+        </li>
+      </ul>
+
+      <div
+        class="todo__empty-message"
+        data-js-todo-empty-message
+      ></div>
     </div>
   </body>
 </html>
