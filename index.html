@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>To Do List</title>
+    <link rel="stylesheet" href="./styles/index.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <div class="todo">
+      <h1 class="todo__tittle">To Do List</h1>
+      <form class="todo__form">
+        <div class="todo__field field">
+          <label class="field__label" for="new-task">
+            New task title
+          </label>
+          <input
+            class="field__input"
+            id="new-task"
+            placeholder=" "
+            autocomplete="off"
+          />
+        </div>
+        <button class="button" type="submit">Add</button>
+      </form>
+      <form class="todo__form">
+        <div class="todo__field field">
+          <label class="field__label" for="new-task">
+            New task title
+          </label>
+          <input
+            class="field__input"
+            id="new-task"
+            placeholder=" "
+            autocomplete="off"
+          />
+        </div>
+        <button class="button" type="submit">Add</button>
+      </form>
+      <div class="todo__info">
+        <div class="todo__total-tasks">
+          Total Tasks: <span>0</span>
+        </div>
+        <button todo__delete-all-button type="button">
+          Delete All
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
