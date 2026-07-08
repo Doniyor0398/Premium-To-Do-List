@@ -1,0 +1,22 @@
+# Node modules
+node_modules/
+prompt
+plan
+Git
+
+# Логи
+*.log
+
+# Сборки / дистрибутивы
+dist/
+build/
+
+# IDE и система
+.vscode/
+.DS_Store
+*.swp
+
+# Файлы среды
+.env
+
+
