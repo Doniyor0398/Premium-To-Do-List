@@ -1,0 +1,6 @@
+.todo__item {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    padding: 10px;
+}
