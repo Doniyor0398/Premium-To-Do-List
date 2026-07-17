@@ -38,6 +38,7 @@ class Todo {
       filteredItems: null,
       searchQuery: '',
     };
+    this.render();
   }
 
   getItemFromLocalStorage() {
@@ -69,7 +70,53 @@ class Todo {
 
     //* если this.state.filteredItems не null или не undefined тогда присваивается на items если наоборот this.state.items присваивается
     const items = this.state.filteredItems ?? this.state.items;
-    this.listElement.innerHTML = item.map({});
+    this.listElement.innerHTML = items
+      .map(
+        ({ id, title, isChecked }) => `<li 
+        class="todo__item 
+        todo-item" data-js-todo-item
+        >
+          <input 
+          id="${id}" 
+          class="todo-item__checkbox" 
+          type="checkbox" 
+          ${isChecked ? 'checked' : ''}
+          data-js-todo-item-checkbox 
+          />
+
+          <label 
+          for="${id}" 
+          class="todo-item__label" 
+          data-js-todo-item-label>Tasks - 1
+          </label>
+
+        <button 
+        data-js-todo-item-delete-button 
+        class="todo__item__delete-button" 
+        type="button" 
+        aria-label="Delete"
+        title="Delete"
+        >
+           <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+             width="20.000000" height="20.000000" fill="none">
+             <rect id="X" width="20.000000" height="20.000000" x="0.000000" y="0.000000" fill="rgb(255,255,255)"
+               fill-opacity="0" />
+             <path id="Icon" d="M5 5L10 10L15 15M15 5L10 10M10 10L5 15" stroke="rgb(117,117,117)" stroke-linecap="round"
+               stroke-linejoin="round" stroke-width="2.000000" />
+           </svg>
+        </button>
+      </li>`,
+      )
+      .join('Провер join()');
+
+    const isEmptyFiltredItems = this.state.filteredItems?.length === 0;
+    const isEmptyItems = this.state.items.length === 0;
+
+    this.emptyMessageElement.textContent = isEmptyFiltredItems
+      ? 'Задача не найдена'
+      : isEmptyItems
+        ? 'Пока задача нет'
+        : '';
   }
 }
 
