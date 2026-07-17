@@ -47,7 +47,29 @@ class Todo {
     }
 
     try {
-    } catch (error) {}
+      const parsedData = JSON.parse(rawData);
+
+      return Array.isArray(parsedData) ? parsedData : [];
+    } catch {
+      console.error('Todo items parse error');
+      return [];
+    }
+  }
+
+  saveItemToLocalStorage() {
+    localStorage.setItem(this.localStorageKey, JSON.stringify(this.state.items));
+  }
+
+  render() {
+    this.totalTasksElement.textContent = this.state.items.length;
+    this.deleteAllButtonElement.classList.toggle(
+      this.stateClasses.isVisible,
+      this.state.items.length > 0,
+    );
+
+    //* если this.state.filteredItems не null или не undefined тогда присваивается на items если наоборот this.state.items присваивается
+    const items = this.state.filteredItems ?? this.state.items;
+    this.listElement.innerHTML = item.map({});
   }
 }
 
