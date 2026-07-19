@@ -118,6 +118,75 @@ class Todo {
         ? 'Пока задача нет'
         : '';
   }
+
+  addItem(id) {
+    this.state.items.push({
+      id: crypto?.randomUUID() ?? Date.now().toString(),
+      title,
+      isChecked: false,
+    });
+
+    this.render();
+    this.saveItemToLocalStorage();
+  }
+
+  deleteItem() {
+    this.state.items = this.state.items.filter((item) => item.id !== id);
+    this.render();
+    this.saveItemToLocalStorage();
+  }
+
+  toggleCheckedState(id) {
+    this.state.items = this.state.items.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          isChecked: !item.isChecked,
+        };
+
+        return item;
+      }
+    });
+    this.render();
+    this.saveItemToLocalStorage();
+  }
+
+  filter() {
+    const queryFormatted = this.state.items.filter(({ title }) => {
+      const titleFormatted = title.toLowerCase();
+
+      return titleFormatted.includes(queryFormatted);
+    });
+    this.render();
+  }
+
+  resetFilter() {
+    this.state.filteredItems = null;
+    this.state.searchQuery = '';
+    this.render();
+  }
+
+  onNewTaskFormSubmit = (event) => {
+    event.preventDefault();
+
+    const newTodoItemTitle = this.newTaskInputElement.value;
+
+    if (newTodoItemTitle.trim().length > 0) {
+      this.addItem(newTodoItemTitle);
+      this.resetFilter();
+      this.newTaskInputElement.value = '';
+      this.newTaskInputElement.focus();
+    }
+  };
+
+  onSearchTaskFormSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  bindEvents() {
+    this.newTaskFormElement.addEventListener('submit', this.onNewTaskFormSubmit);
+    this.searchTaskFormElement.addEventListener('submit', this.onSearchTaskFormSubmit);
+  }
 }
 
 new Todo();
