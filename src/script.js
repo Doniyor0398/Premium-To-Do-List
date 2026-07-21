@@ -39,6 +39,7 @@ class Todo {
       searchQuery: '',
     };
     this.render();
+    this.bindEvents();
   }
 
   getItemFromLocalStorage() {
@@ -183,9 +184,52 @@ class Todo {
     event.preventDefault();
   };
 
+  onSearchTaskInputChange = ({ target }) => {
+    const value = target.value.trim();
+
+    if (value.length > 0) {
+      this.state.searchQuery = value;
+      this.filter();
+    } else {
+      this.resetFilter();
+    }
+  };
+
+  onDeleteAllButtonClick = () => {
+    const isConfirm = confirm('Вы точно хотите удалить или что?');
+
+    if (isConfirm) {
+      this.state.items = [];
+      this.saveItemToLocalStorage();
+      this.render();
+    }
+  };
+
+  onClick = ({ target }) => {
+    if (target.matches(this.selectors.itemDeleteButton)) {
+      const itemElement = target.closest(this.selectors.item);
+      const itemCheckboxElement = itemElement.querySelector(this.selectors.itemCheckbox);
+
+      itemElement.classList.add(this.stateClasses.isDisappearing);
+
+      setTimeout(() => {
+        this.deleteItem(itemCheckboxElement.id);
+      }, 400);
+    }
+  };
+
+  onChage = ({ target }) => {
+    if (target.matches(this.selectors.itemCheckbox)) {
+      this.toggleCheckedState(target.id);
+    }
+  };
   bindEvents() {
     this.newTaskFormElement.addEventListener('submit', this.onNewTaskFormSubmit);
     this.searchTaskFormElement.addEventListener('submit', this.onSearchTaskFormSubmit);
+    this.searchTaskInputElement.addEventListener('click', this.onSearchTaskInputChange);
+    this.deleteAllButtonElement.addEventListener('click', this.onDeleteAllButtonClick);
+    this.listElement.addEventListener('click', this.onClick);
+    this.listElement.addEventListener('change', this.onChage);
   }
 }
 
