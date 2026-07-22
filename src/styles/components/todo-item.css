@@ -103,3 +103,7 @@
     }
 
 }
+
+.todo-item__delete-button svg {
+    pointer-events: none;
+}

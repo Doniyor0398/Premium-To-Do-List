@@ -51,6 +51,8 @@
     opacity: 0;
     visibility: hidden;
   }
+
+
 }
 
 .todo__list,
@@ -58,6 +60,8 @@
   &:empty {
     display: none;
   }
+
+
 }
 
 .todo__list {
